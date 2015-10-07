@@ -16,14 +16,14 @@ defmodule SiteHeartbeat.Mixfile do
       {:ibrowse, github: "cmullaparthi/ibrowse", tag: "v4.1.2"},
       {:httpotion, "~> 2.1.0"},
       {:exsync, "~> 0.1", only: :dev},
-      {:mailer, github: "antp/mailer"},
-      {:timex, github: "bitwalker/timex"}
+      #{:mailer, github: "antp/mailer"},
+      #{:timex, github: "bitwalker/timex"}
       #{:tzdata, github: "lau/tzdata"}
     ]
   end
 
   def application do
-    [applications: [:httpotion, :exsync, :tzdata]]
+    [applications: [:httpotion, :exsync, ]]  # :tzdata
     # Application dependency auto-starts it, otherwise: HTTPotion.start
   end
 
