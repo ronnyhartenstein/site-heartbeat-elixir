@@ -17,7 +17,7 @@ defmodule Mix.Tasks.SiteTest.Bulk do
       Logger.debug "status #{stat}"
     rescue
       error ->
-        Logger.warn "#{domain} -> #{error.message}"
+        Logger.debug "#{domain} -> #{error.message}"
         SiteHeartbeat.Notifier.send(domain)
     end
   end

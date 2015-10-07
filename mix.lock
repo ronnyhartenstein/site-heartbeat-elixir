@@ -8,7 +8,7 @@
   "ibrowse": {:git, "https://github.com/cmullaparthi/ibrowse.git", "ea3305d21f37eced4fac290f64b068e56df7de80", [tag: "v4.1.2"]},
   "iconv": {:git, "https://github.com/antp/erlang-iconv.git", "7ad5ebff53a75bb3d4ffa6957e20c966c6032949", []},
   "idna": {:hex, :idna, "1.0.2"},
-  "mailer": {:hex, :mailer, "0.5.1"},
+  "mailer": {:git, "https://github.com/antp/mailer.git", "50259741f9ca916ea5274abe8e4a99c1702c218d", []},
   "ssl_verify_hostname": {:hex, :ssl_verify_hostname, "1.0.5"},
-  "timex": {:hex, :timex, "0.19.5"},
+  "timex": {:git, "https://github.com/bitwalker/timex.git", "659bf0300a8a4dda2b80a2c40265d6e51ca5afe2", []},
   "tzdata": {:hex, :tzdata, "0.5.4"}}

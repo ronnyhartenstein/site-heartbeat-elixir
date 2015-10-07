@@ -7,6 +7,7 @@ defmodule SiteHeartbeat.Mixfile do
      elixir: "~> 1.1",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
+     escript: escript_config,
      deps: deps]
   end
 
@@ -14,16 +15,21 @@ defmodule SiteHeartbeat.Mixfile do
     [
       {:ibrowse, github: "cmullaparthi/ibrowse", tag: "v4.1.2"},
       {:httpotion, "~> 2.1.0"},
-      #{:exsync, "~> 0.1", only: :dev},
-      {:mailer, "~> 0.5.1"},
-      {:timex, "~> 0.19.5"},
-      {:tzdata, "~> 0.5.4"}
+      {:exsync, "~> 0.1", only: :dev},
+      {:mailer, github: "antp/mailer"},
+      {:timex, github: "bitwalker/timex"}
+      #{:tzdata, github: "lau/tzdata"}
     ]
   end
 
   def application do
     [applications: [:httpotion, :exsync, :tzdata]]
     # Application dependency auto-starts it, otherwise: HTTPotion.start
+  end
+
+
+  defp escript_config do
+    [ main_module: SiteHeartbeat.CLI ]
   end
 
 end

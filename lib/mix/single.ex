@@ -7,14 +7,14 @@ defmodule Mix.Tasks.SiteTest.Single do
   def run([domain]) when is_binary(domain) do
     :ibrowse.start
     Application.load(:tzdata)
-    
+
     try do
       Logger.debug "check #{domain}"
       %{body: stat} = SiteHeartbeat.get(domain)
       Logger.debug "status #{stat}"
     rescue
       error ->
-        Logger.warn "#{domain} -> #{error.message}"
+        Logger.debug "#{domain} -> #{error.message}"
         SiteHeartbeat.Notifier.send(domain)
     end
   end

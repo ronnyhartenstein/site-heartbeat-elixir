@@ -7,6 +7,10 @@ config :sites, list: [
   "hellmigs-hundeladen.de"
 ]
 
+config :logger, :console,
+  level: :warn,
+  compile_time_purge_level: :info
+
 config :notifier, email: "siteheartbeat@rh-flow.de"
 
 config :mailer,
