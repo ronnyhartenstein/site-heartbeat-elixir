@@ -13,8 +13,12 @@ defmodule SiteHeartbeat do
   def process_response_body(body) do
     body_str = body |> IO.iodata_to_binary
     case Regex.run(~r/<title>(.*?)<\/title>/, body_str) do
-      [_, title] when is_binary(title) -> true
-      nil -> false
+      [_, title] when is_binary(title) ->
+        Logger.debug "title: #{title}"
+        true
+      nil ->
+        Logger.warn "title not found"
+        false
     end
   end
 end

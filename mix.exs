@@ -23,7 +23,7 @@ defmodule SiteHeartbeat.Mixfile do
   end
 
   def application do
-    [applications: [:httpotion]]  # :exsync :tzdata
+    [applications: [:logger, :httpotion]]  # :exsync :tzdata
     # Application dependency auto-starts it, otherwise: HTTPotion.start
   end
 

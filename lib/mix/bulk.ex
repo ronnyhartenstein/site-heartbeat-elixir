@@ -10,7 +10,7 @@ defmodule Mix.Tasks.SiteTest.Bulk do
     Logger.debug "file #{file} .."
     File.stream!(file)
     |> Stream.map(&remove_newline/1)
-    |> Enum.map(&proc_domain/1)
+    |> Parallel.map(&proc_domain/1)
   end
 
   defp remove_newline(domain) do
@@ -20,8 +20,9 @@ defmodule Mix.Tasks.SiteTest.Bulk do
   defp proc_domain(domain) do
     try do
       Logger.debug "check #{domain}"
-      %{body: stat} = SiteHeartbeat.get(domain)
+      %{body: _} = SiteHeartbeat.get(domain)
       Logger.debug "status #{stat}"
+      # IO.puts "Domain #{domain} reachable!"
     rescue
       error ->
         Logger.debug "#{domain} -> #{error.message}"

@@ -5,3 +5,4 @@ erl_crash.dump
 *.ez
 *.beam
 /config/hosts.txt
+site_heartbeat

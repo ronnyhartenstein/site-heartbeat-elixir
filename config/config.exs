@@ -3,9 +3,11 @@
 use Mix.Config
 
 
-config :logger, :console,
-  level: :error #,
-  # compile_time_purge_level: :debug
+config :logger,
+  backends: [:console],
+  level: :error,
+  compile_time_purge_level: :info,
+  sync_threshold: 30
 
 config :site_heartbeat, email: "siteheartbeat@rh-flow.de"
 
