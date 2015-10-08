@@ -2,15 +2,22 @@ defmodule Mix.Tasks.SiteTest.Bulk do
   use Mix.Task
   import Logger
 
-  @sites Application.get_env(:sites, :list)
+  #@sites Application.get_env(:sites, :list)
   @shortdoc "test of all configured sites"
 
-  def run(_) do
+  def run([file]) when is_binary(file) do
     :ibrowse.start
-    Enum.map @sites, &proc_domain/1
+    Logger.debug "file #{file} .."
+    File.stream!(file)
+    |> Stream.map(&remove_newline/1)
+    |> Enum.map(&proc_domain/1)
   end
 
-  def proc_domain(domain) do
+  defp remove_newline(domain) do
+    String.slice domain, 0..-2
+  end
+
+  defp proc_domain(domain) do
     try do
       Logger.debug "check #{domain}"
       %{body: stat} = SiteHeartbeat.get(domain)

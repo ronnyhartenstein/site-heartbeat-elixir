@@ -2,12 +2,10 @@
 # and its dependencies with the aid of the Mix.Config module.
 use Mix.Config
 
-
 config :logger, :console,
-  level: :error #,
-  # compile_time_purge_level: :debug
+  level: :warn
 
-config :site_heartbeat, email: "siteheartbeat@rh-flow.de"
+config :notifier, email: "siteheartbeat@rh-flow.de"
 
 # config :mailer,
 #   templates: "priv/templates",

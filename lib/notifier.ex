@@ -4,6 +4,8 @@ defmodule SiteHeartbeat.Notifier do
   @email Application.get_env(:notifier, :email)
 
   def send(domain) do
+
+    # Mailer - gen_smtp makes trouble
     # email = Mailer.compose_email(@email, @email,
     #             "Site-Heartbeat: #{domain} not reachable",
     #             "not_reachable",
@@ -11,6 +13,7 @@ defmodule SiteHeartbeat.Notifier do
     # Logger.debug "Mailer email #{email}"
     # response = Mailer.send(email)
     # Logger.debug "Mailer response #{response}"
+
     IO.puts :stderr, "Domain #{domain} not reachable"
   end
 end
