@@ -20,3 +20,9 @@ Uses https://github.com/edgurgel/httpoison
 - Put it into the crontab - running hourly
 
     5 * * * * cd /var/www/vhosts/rh-flow.de/site-heartbeat; ./site_heartbeat hosts.txt
+
+- Add locales to the cronjob, otherwise "the VM is running with native name encoding of latin1 which may cause Elixir to malfunction as it expects utf8"
+
+    LANG="de_DE.utf8"
+    LANGUAGE="de_DE:"
+    LC_ALL=de_DE.UTF-8
