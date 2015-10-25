@@ -1,6 +1,6 @@
 defmodule Mix.Tasks.SiteTest.Single do
   use Mix.Task
-  import Logger
+  require Logger
 
   @shortdoc "test of a single site (Param: 'domain.tld')"
 

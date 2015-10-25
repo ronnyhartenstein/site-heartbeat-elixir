@@ -16,6 +16,7 @@ defmodule SiteHeartbeat.Mixfile do
       {:ibrowse, github: "cmullaparthi/ibrowse", tag: "v4.1.2"},
       {:httpotion, "~> 2.1.0"},
       {:exsync, "~> 0.1", only: :dev},
+      {:parallel, "~> 0.0.0"}
       #{:mailer, github: "antp/mailer"},
       #{:timex, github: "bitwalker/timex"}
       #{:tzdata, github: "lau/tzdata"}

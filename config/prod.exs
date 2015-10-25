@@ -2,10 +2,13 @@
 # and its dependencies with the aid of the Mix.Config module.
 use Mix.Config
 
-config :logger, :console,
-  level: :warn
+# Do not print debug messages in production
+config :logger,
+  level: :info,
+  compile_time_purge_level: :info
 
-config :notifier, email: "siteheartbeat@rh-flow.de"
+# Send to this email
+#config :notifier, email: "siteheartbeat@rh-flow.de"
 
 # config :mailer,
 #   templates: "priv/templates",

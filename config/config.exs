@@ -1,19 +1,19 @@
 # This file is responsible for configuring your application
 # and its dependencies with the aid of the Mix.Config module.
+#
+# This configuration file is loaded before any dependency and
+# is restricted to this project.
 use Mix.Config
 
 
-config :logger,
-  backends: [:console],
-  level: :error,
-  compile_time_purge_level: :info,
-  sync_threshold: 30
+# Configures Elixir's Logger
+config :logger, :console,
+  #backends: [:console],
+  #compile_time_purge_level: :info,
+  #sync_threshold: 30
+  #format: "$time $metadata[$level] $message\n",
+  #metadata: [:request_id]
 
-config :site_heartbeat, email: "siteheartbeat@rh-flow.de"
-
-# config :mailer,
-#   templates: "priv/templates",
-#   server: "mail.rh-flow.de",
-#   username: "ronny@rh-flow.de",
-#   password: "",
-#   ssl: true
+# Import environment specific config. This must remain at the bottom
+# of this file so it overrides the configuration defined above.
+import_config "#{Mix.env}.exs"
