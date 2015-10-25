@@ -1,20 +1,17 @@
 # SiteHeartbeat
 
-https://github.com/myfreeweb/httpotion
+Checks for a bunch of domains their HTTP status code (200) and the `<title>`.
+
+Uses https://github.com/edgurgel/httpoison
 
 
-## Installation
+# Deployment
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed as:
-
-  1. Add site_heartbeat to your list of dependencies in `mix.exs`:
-
-        def deps do
-          [{:site_heartbeat, "~> 0.0.1"}]
-        end
-
-  2. Ensure site_heartbeat is started before your application:
-
-        def application do
-          [applications: [:site_heartbeat]]
-        end
+- Build it as `escript` locally,
+    mix escript.build
+- `scp` the `site_heartbeat` to target system (e.g. `~/site-heartbeat`).
+- Maintain a valuable `hosts.txt`.
+- Run it for test
+    ./site-heartbeat/site_heartbeat hosts.txt
+- Put it into the crontab
+    * 3 * * * cd /var/www/vhosts/rh-flow.de/site-heartbeat; ./site_heartbeat hosts.txt
