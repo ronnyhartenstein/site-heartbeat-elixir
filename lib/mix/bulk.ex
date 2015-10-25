@@ -6,13 +6,16 @@ defmodule Mix.Tasks.SiteTest.Bulk do
   @shortdoc "test of all configured sites"
 
   def run([file]) when is_binary(file) do
-    :ibrowse.start
+    HTTPoison.start
     Logger.debug "file #{file} .."
     File.stream!(file)
     |> Stream.map(&to_struct/1)
     #|> Stream.map(&remove_newline/1)
     |> Stream.filter(&is_active_domain/1)
     |> Parallel.map(&proc_domain/1)
+
+    #Logger.debug "stop service"
+    #HTTPoison.stop
   end
 
   defp to_struct(raw) do
@@ -29,23 +32,21 @@ defmodule Mix.Tasks.SiteTest.Bulk do
   end
 
   defp proc_domain(%{domain: domain} = row) do
-    row = try do
-      Logger.debug "check domain #{domain}"
-      %{body: {stat, curr_title}, status_code: status_code} = SiteHeartbeat.get(domain)
-      Logger.debug "status #{stat}"
-      row
-      |> check_title(curr_title)
-      |> check_status_code(status_code)
-
-    rescue
-      _error ->
-        #Logger.debug "#{domain} -> #{error}"
-        %{row | error: ["domain unreachable" | row.error]}
-        #SiteHeartbeat.Notifier.domain_unreachable(domain)
-    end
-
-    notify_on_errors row
+    Logger.debug "check domain #{domain}"
+    %{body: {stat, curr_title}, status_code: status_code} = SiteHeartbeat.get(domain)
+    Logger.debug "status #{stat}"
+    row
+    |> check_error(stat, curr_title)
+    |> check_title(curr_title)
+    |> check_status_code(status_code)
+    |> notify_on_errors
   end
+
+  defp check_error(%{domain: domain} = row, :error, error) do
+    Logger.debug "#{domain} -> error #{error}"
+    %{row | error: ["error happens" | row.error]}
+  end
+  defp check_error(row,_,_), do: row
 
   defp check_title(%{domain: domain, title: title} = row, curr_title) when curr_title != title do
     Logger.debug "#{domain} -> '#{curr_title}' - should be '#{title}'"

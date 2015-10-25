@@ -13,19 +13,15 @@ defmodule SiteHeartbeat.Mixfile do
 
   defp deps do
     [
-      {:ibrowse, github: "cmullaparthi/ibrowse", tag: "v4.1.2"},
-      {:httpotion, "~> 2.1.0"},
-      {:exsync, "~> 0.1", only: :dev},
-      {:parallel, "~> 0.0.0"}
-      #{:mailer, github: "antp/mailer"},
-      #{:timex, github: "bitwalker/timex"}
-      #{:tzdata, github: "lau/tzdata"}
+      {:httpoison, "~> 0.7.2"},
+      {:parallel, "~> 0.0.0"},
+      {:exrm, "~> 0.18.1"}
+      #{:codepagex, "~> 0.1.1"}
     ]
   end
 
   def application do
-    [applications: [:logger, :httpotion]]  # :exsync :tzdata
-    # Application dependency auto-starts it, otherwise: HTTPotion.start
+    [applications: [:logger, :httpoison]]
   end
 
 

@@ -1,5 +1,5 @@
 defmodule SiteHeartbeat.CLI do
-  def main(_argv) do
-    Mix.Tasks.SiteTest.Bulk.run ["config/hosts.txt"]
+  def main([file]) do
+    Mix.Tasks.SiteTest.Bulk.run [file]
   end
 end
