@@ -10,7 +10,7 @@ use Mix.Config
 config :logger, :console,
   #backends: [:console],
   #compile_time_purge_level: :info,
-  #sync_threshold: 30
+  sync_threshold: 30
   #format: "$time $metadata[$level] $message\n",
   #metadata: [:request_id]
 
