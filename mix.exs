@@ -15,8 +15,9 @@ defmodule SiteHeartbeat.Mixfile do
     [
       {:httpoison, "~> 0.7.2"},
       {:parallel, "~> 0.0.0"},
-      {:exrm, "~> 0.18.1"}
-      #{:codepagex, "~> 0.1.1"}
+      {:exrm, "~> 0.18.1"},
+      #{:codepagex, "~> 0.1.1"},
+      {:credo, "~> 0.1.10"}
     ]
   end
 

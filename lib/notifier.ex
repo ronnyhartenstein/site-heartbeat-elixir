@@ -3,9 +3,9 @@ defmodule SiteHeartbeat.Notifier do
 
   @email Application.get_env(:notifier, :email)
 
-  def errors(%{title: title, domain: domain, error: errors}) do
+  def errors(%{title: title, domain: domain, error: errorlist}) do
     #Logger.error "errors #{errors}"
-    send "#{domain} (#{title}): #{errors}"
+    send "#{domain} (#{title}): #{errorlist}"
   end
 
   def domain_unreachable(domain) do

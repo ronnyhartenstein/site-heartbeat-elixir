@@ -1,5 +1,6 @@
 defmodule SiteHeartbeat.CLI do
+  alias Mix.Tasks.SiteTest.Bulk
   def main([file]) do
-    Mix.Tasks.SiteTest.Bulk.run [file]
+    Bulk.run [file]
   end
 end

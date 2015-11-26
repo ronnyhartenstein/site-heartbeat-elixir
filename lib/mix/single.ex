@@ -1,6 +1,7 @@
 defmodule Mix.Tasks.SiteTest.Single do
   use Mix.Task
   require Logger
+  alias SiteHeartbeat.Notifier
 
   @shortdoc "test of a single site (Param: 'domain.tld')"
 
@@ -15,7 +16,7 @@ defmodule Mix.Tasks.SiteTest.Single do
     rescue
       error ->
         Logger.debug "#{domain} -> #{error.message}"
-        SiteHeartbeat.Notifier.send(domain)
+        Notifier.send(domain)
     end
   end
 end

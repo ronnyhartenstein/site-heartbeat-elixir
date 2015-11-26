@@ -2,6 +2,8 @@ defmodule Mix.Tasks.SiteTest.Bulk do
   use Mix.Task
   require Logger
 
+  alias SiteHeartbeat.Notifier
+
   #@sites Application.get_env(:sites, :list)
   @shortdoc "test of all configured sites"
 
@@ -19,7 +21,8 @@ defmodule Mix.Tasks.SiteTest.Bulk do
   end
 
   defp to_struct(raw) do
-    [domain, title] = String.split remove_newline(raw), ": ", parts: 2, trim: true
+    [domain, title] = String.split remove_newline(raw), ": ",
+        parts: 2, trim: true
     %SiteHeartbeat{raw: raw, domain: domain, title: title}
   end
 
@@ -33,7 +36,8 @@ defmodule Mix.Tasks.SiteTest.Bulk do
 
   defp proc_domain(%{domain: domain} = row) do
     Logger.debug "check domain #{domain}"
-    %{body: {stat, curr_title}, status_code: status_code} = SiteHeartbeat.get(domain)
+    %{body: {stat, curr_title}, status_code: status_code}
+        = SiteHeartbeat.get(domain)
     Logger.debug "status #{stat}"
     row
     |> check_error(stat, curr_title)
@@ -63,7 +67,7 @@ defmodule Mix.Tasks.SiteTest.Bulk do
 
 
   defp notify_on_errors(%{error: errors} = row) when errors != [] do
-    SiteHeartbeat.Notifier.errors(row)
+    Notifier.errors(row)
   end
   defp notify_on_errors(_), do: nil
 end
